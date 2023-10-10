@@ -1,0 +1,126 @@
+<!-- 3. HTML
+A. Create a basic calculator using HTML, CSS, and JavaScript with the functionality of 
+add, subtract, multiply and divide. Use the following picture for reference. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>calculator</title>
+<style>
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body{
+height: 100vh;
+background-color: rgb(70, 67, 67);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+#parent {
+width: 500px;
+height: 500px;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;
+}
+.firstb{
+width: 100%;
+display: flex;
+justify-content:center;
+align-items: center;
+}
+.secondb,.thirdb ,.fourthb ,.fifthb {
+width: 100%;
+display: flex;
+justify-content:center;
+}
+.box{
+cursor: pointer;
+width: calc(500px / 5);
+height: calc(500px /5 );
+font-size: 2rem;
+background-color: black;
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+#parent>.firstb>.box{
+cursor: pointer;
+background-color: green;
+width: calc(500px / 5);
+height: calc(500px /5 );
+}
+#parent>.firstb>.input{
+width: calc(500px / 1.66);
+height: 100%;
+}
+input[type="text"]{
+width: 100%;
+height: 100%;
+font-size: 2rem;
+}
+#parent>div>div:last-of-type {
+background-color: gray;
+}
+</style>
+</head>
+<body>
+<div id="parent">
+<div class="firstb">
+<div class="input"> <input type="text" name="" id="">
+</div>
+<div class="box">AC</div>
+</div>
+<div class="secondb">
+<div class="num9 box">9</div>
+<div class="num8 box">8</div>
+<div class="num7 box">7</div>
+<div class="Op+ box">+</div>
+</div>
+<div class="thirdb">
+<div class="num4 box">4</div>
+<div class="num5 box">5</div>
+<div class="num6 box">6</div>
+<div class="Op- box">-</div>
+</div>
+<div class="fourthb">
+<div class="box">1</div>
+<div class="box">2</div>
+<div class="box">3</div>
+<div class="box">/</div>
+</div>
+<div class="fifthb">
+<div class="box">.</div>
+<div class="box">0</div>
+<div class="box">=</div>
+<div class="box">*</div>
+</div>
+</div>
+<script>
+let total="";
+let boxes=document.querySelectorAll(".box")
+Array.from(boxes).forEach((box)=>{
+box.addEventListener("click",(e)=>{
+if(e.target.innerHTML == '='){
+total=eval(total)
+document.querySelector("input").value=total
+}
+else if(e.target.innerHTML == 'AC'){
+total=""
+document.querySelector("input").value=""
+}
+else{
+total=total+e.target.innerHTML;
+document.querySelector("input").value=total
+}
+})
+})
+</script>
+</body>
+</html>
