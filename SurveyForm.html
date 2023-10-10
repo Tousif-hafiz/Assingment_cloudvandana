@@ -1,0 +1,221 @@
+<!-- B. Create a survey form with Fields; First Name, Last Name, Date of Birth, Country 
+(dropdown), Gender (checkbox), Profession, email, and mobile number. All the input 
+fields are necessary to submit the form. Create two buttons Submit and Reset. Reset 
+will reset the form while on clicking on submit, first it will check all the fields and 
+necessary validations and then a popup will appear displaying all the selected values 
+with label in front of it. On closing the popup, form should reset all the values. Use
+the following for reference. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survey Form</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&family=MuseoModerno:ital,wght@0,100;0,200;1,200&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+</style>
+
+<style>
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: poppins;
+}
+
+#container{
+width: 60vw;
+height: 500px;
+background-color: plum;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;
+border-radius: 5rem;
+}
+
+#surveyForm{
+height: 300px;
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;
+}
+
+.row{
+width: 100%;
+display: flex;
+justify-content: space-evenly;
+}
+
+.column{
+width: 40%;
+display: flex;
+justify-content:flex-start;
+align-items: center;
+gap: 1rem;
+}
+
+input[type="radio"]
+{
+width: 1rem;
+height: 1rem;
+}
+
+select{
+background-color: transparent;
+width: 10rem;
+border: none;
+}
+
+input{
+width: 10rem;
+height: 2rem;
+border: none;
+background-color: transparent;
+border-bottom: 2px solid purple;
+}
+
+.submit{
+cursor: pointer;
+border: 2px solid purple;
+padding : 0.6rem;
+border-radius: 5rem;
+width: 10rem;
+transition: 0.5s;
+}
+
+.reset{
+cursor: pointer;
+background-color: purple;
+padding : 0.6rem;
+border-radius: 5rem;
+color: white;
+width: 10rem;
+}
+
+.submit:hover{
+background-color: purple;
+}
+
+</style>
+
+</head>
+<body>
+    <div id="container">
+    <h1>Survey Form</h1>
+    <form name="surveyForm" id="surveyForm" onsubmit="return validateForm()">
+    <div class="row">
+    <div class="column">
+    <label for="firstName">First Name:</label>
+    <input type="text" name="firstName" required>
+    </div>
+    <div class="column">
+    <label for="lastName">Last Name:</label>
+    <input type="text" name="lastName"><br>
+    </div>
+    </div>
+    <div class="row">
+    <div class="column">
+    <label for="dob">Date of Birth:</label>
+    <input type="date" name="dob">
+    </div>
+    <div class="column">
+    <label for="country">Country:</label>
+    <select name="country">
+    <option value="">Select Country</option>
+    <option value="India">India</option>
+    <option value="Canada">Canada</option>
+    <option value="USA">USA</option>
+    <option value="China">China</option>
+    <option value="Japan">Japan</option>
+    <option value="Korea">Korea</option>
+    <option value="Russia">Russia</option>
+    <option value="South Korea">South Korea</option>
+    <option value="Taiwan">Taiwan</option>
+    <option value="Vietnam">Vietnam</option>
+    <option value="France">France</option>
+    <option value="Germany">Germany</option>
+    <option value="Italy">Italy</option>
+    <option value="Spain">Spain</option>
+    <option value="Brazil">Brazil</option>
+    <option value="Australia">Australia</option>
+    </select>
+    </div>
+    </div>
+    <div class="row">
+    <div class="column">
+    <label>Gender:</label>
+    <p><input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female</p>
+    </div>
+    <div class="column">
+    <label for="profession">Profession:</label>
+    <input type="text" name="profession"><br>
+    </div>
+    </div>
+    <div class="row">
+    <div class="column">
+    <label for="email">Email:</label>
+    <input type="email" name="email">
+    </div>
+    <div class="column">
+    <label for="mobile">Mobile Number:</label>
+    <input type="tel" name="mobile" ><br>
+    </div>
+    </div>
+    <div class="row">
+    <div class="column buttons">
+    <button class="submit">Submit</button>
+    <button class="reset">Reset</button>
+    </div>
+    </div>
+    </form>
+    </div>
+</body>
+
+<script>
+    function validateForm() {
+    var firstName = document.forms["surveyForm"]["firstName"].value;
+    var lastName = document.forms["surveyForm"]["lastName"].value;
+    var dob = document.forms["surveyForm"]["dob"].value;
+    var country = document.forms["surveyForm"]["country"].value;
+    var email = document.forms["surveyForm"]["email"].value;
+    var mobile = document.forms["surveyForm"]["mobile"].value;
+    if (firstName == "" || lastName == "" || dob == "" || country == "" || email ==
+    "" || mobile == "") {
+    alert("All fields are required");
+    return false;
+    }
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!email.match(emailPattern)) {
+    alert("Please enter a valid email address");
+    return false;
+    }
+    var mobilePattern = /^[0-9]{10}$/;
+    if (!mobile.match(mobilePattern)) {
+    alert("Please enter a valid 10-digit mobile number");
+    return false;
+    }
+    var popupContent = "First Name: " + firstName + "\n" +
+    "Last Name: " + lastName + "\n" +
+    "Date of Birth: " + dob + "\n" +
+    "Country: " + country + "\n" +
+    "Email: " + email + "\n" +
+    "Mobile: " + mobile
+    alert(popupContent);
+    document.getElementById("surveyForm").reset();
+    return false;
+    }
+</script>
+</html>
