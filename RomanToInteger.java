@@ -1,5 +1,4 @@
 //B. Enter Roman Number as input and convert it to Integer. (ex IX=9)
-import java.io.*;
 import java.util.*;
 public class RomanToInteger {
     public static void convertRomanToInt(String s)
