@@ -78,16 +78,16 @@ background-color: gray;
 <div class="box">AC</div>
 </div>
 <div class="secondb">
-<div class="num9 box">9</div>
-<div class="num8 box">8</div>
-<div class="num7 box">7</div>
-<div class="Op+ box">+</div>
+<div class="box">9</div>
+<div class="box">8</div>
+<div class="box">7</div>
+<div class="box">+</div>
 </div>
 <div class="thirdb">
-<div class="num4 box">4</div>
-<div class="num5 box">5</div>
-<div class="num6 box">6</div>
-<div class="Op- box">-</div>
+<div class="box">4</div>
+<div class="box">5</div>
+<div class="box">6</div>
+<div class="box">-</div>
 </div>
 <div class="fourthb">
 <div class="box">1</div>
@@ -105,8 +105,8 @@ background-color: gray;
 <script>
 let total="";
 let boxes=document.querySelectorAll(".box")
-Array.from(boxes).forEach((box)=>{
-box.addEventListener("click",(e)=>{
+Array.from(boxes).forEach(function(box){
+box.addEventListener("click",function(e){
 if(e.target.innerHTML == '='){
 total=eval(total)
 document.querySelector("input").value=total
